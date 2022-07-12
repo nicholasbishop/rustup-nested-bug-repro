@@ -10,8 +10,10 @@ fn main() {
     cmd.env_remove("RUSTDOC");
     cmd.args(&["+nightly", "version"]);
 
+    let orig_path = env::var_os("PATH").unwrap_or_default();
+    println!("Original PATH: {:?}", orig_path);
+
     if modify_path {
-        let orig_path = env::var_os("PATH").unwrap_or_default();
         let modified_split_paths = env::split_paths(&orig_path).filter(|path| {
             !path
                 .components()
