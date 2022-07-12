@@ -18,7 +18,9 @@ fn main() {
                 .any(|component| component.as_os_str() == ".rustup")
         });
         let modified_path = env::join_paths(modified_split_paths).expect("invalid PATH");
-        cmd.env("PATH", modified_path);
+        cmd.env("PATH", &modified_path);
+
+        println!("Modified PATH: {:?}", modified_path);
     }
 
     println!("running command: {:?}", cmd);
