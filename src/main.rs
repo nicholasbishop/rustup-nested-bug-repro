@@ -10,7 +10,9 @@ fn main() {
     cmd.env_remove("RUSTDOC");
     cmd.args(&["+nightly", "version"]);
 
-    let orig_path = env::var_os("PATH").unwrap_or_default();
+    println!("RUSTUP_TOOLCHAIN: {:?}", env::var_os("RUSTUP_TOOLCHAIN").unwrap());
+
+    let orig_path = env::var_os("PATH").unwrap();
     println!("Original PATH: {:?}", orig_path);
 
     if modify_path {
